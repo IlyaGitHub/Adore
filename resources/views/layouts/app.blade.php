@@ -33,7 +33,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item"><a class="nav-link" href="{{ route('main') }}">О КЛУБЕ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('members') }}">УЧАСТНИКИ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('events') }}">МЕРОПРИЯТИЯ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('faq') }}">FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('contacts') }}">КОНТАКТЫ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('tariffs') }}">ТАРИФЫ</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -42,13 +47,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">Login</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
                                 </li>
                             @endif
                         @else
@@ -58,10 +63,16 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                        Личный кабинет
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('dashboard-events') }}">
+                                        Мой мероприятия
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Выход
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

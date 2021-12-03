@@ -13,16 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth'])->group(function (){
+    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard-events', [\App\Http\Controllers\DashboardController::class, 'events'])->name('dashboard-events');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [\App\Http\Controllers\StaticPageController::class, 'main'])->name('main');
+Route::get('/members', [\App\Http\Controllers\MemberController::class, 'index'])->name('members');
+Route::get('/events', [\App\Http\Controllers\EventController::class, 'index'])->name('events');
+Route::get('/events/{id}', [\App\Http\Controllers\EventController::class, 'show'])->name('event');
+Route::get('/faq', [\App\Http\Controllers\StaticPageController::class, 'faq'])->name('faq');
+Route::get('/contacts', [\App\Http\Controllers\StaticPageController::class, 'contact'])->name('contacts');
+Route::get('/tariffs', [\App\Http\Controllers\TariffController::class, 'index'])->name('tariffs');
+
